@@ -383,13 +383,11 @@ class _IconPickerState extends FormFieldState<String> {
 
     if (widget.controller == null) {
       _stateController = TextEditingController(text: widget.initialValue);
-    } else {
-      widget.controller.addListener(_handleControllerChanged);
     }
 
     if (_effectiveController.text != null && _effectiveController.text != '') {
       widget.iconCollection.forEach((lsName, loIcon) {
-        if (lsName.contains(_effectiveController.text)) {
+        if (lsName == _effectiveController.text) {
           setValue(
               '{"iconName": "$lsName", "codePoint": ${loIcon.codePoint}, "fontFamily": "${loIcon.fontFamily}"}');
 
@@ -408,12 +406,10 @@ class _IconPickerState extends FormFieldState<String> {
     super.didUpdateWidget(oldWidget);
 
     if (widget.controller != oldWidget.controller) {
-      oldWidget.controller?.removeListener(_handleControllerChanged);
-      widget.controller?.addListener(_handleControllerChanged);
-
       if (oldWidget.controller != null && widget.controller == null) {
-        _stateController =
-            TextEditingController.fromValue(oldWidget.controller.value);
+        _stateController = TextEditingController.fromValue(
+          oldWidget.controller.value,
+        );
       }
 
       if (widget.controller != null) {
@@ -425,9 +421,10 @@ class _IconPickerState extends FormFieldState<String> {
 
     if (_effectiveController.text != null && _effectiveController.text != '') {
       widget.iconCollection.forEach((lsName, loIcon) {
-        if (lsName.contains(_effectiveController.text)) {
+        if (lsName == _effectiveController.text) {
           setValue(
-              '{"iconName": "$lsName", "codePoint": ${loIcon.codePoint}, "fontFamily": "${loIcon.fontFamily}"}');
+            '{"iconName": "$lsName", "codePoint": ${loIcon.codePoint}, "fontFamily": "${loIcon.fontFamily}"}',
+          );
 
           if (widget.icon != null) {
             _icon = Icon(loIcon);
@@ -440,25 +437,12 @@ class _IconPickerState extends FormFieldState<String> {
   }
 
   @override
-  void dispose() {
-    widget.controller?.removeListener(_handleControllerChanged);
-
-    super.dispose();
-  }
-
-  @override
   void reset() {
     super.reset();
 
     setState(() {
       _effectiveController.text = widget.initialValue;
     });
-  }
-
-  void _handleControllerChanged() {
-    if (_effectiveController.text != value) {
-      didChange(_effectiveController.text);
-    }
   }
 
   void onChangedHandler(String value) {

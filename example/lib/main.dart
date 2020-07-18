@@ -21,9 +21,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   TextEditingController _controller;
   //String _initialValue;
-  String _value = '';
+  String _valueChanged = '';
+  String _valueToValidate = '';
+  String _valueSaved = '';
 
   @override
   void initState() {
@@ -55,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 20, right: 20, top: 10),
         child: Form(
+          key: _oFormKey,
           child: Column(
             children: <Widget>[
               IconPicker(
@@ -63,16 +67,59 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Icons.apps),
                 labelText: "Icon",
                 enableSearch: true,
-                onChanged: (val) => setState(() => _value = val),
-                onSaved: (val) => setState(() => _value = val),
+                onChanged: (val) => setState(() => _valueChanged = val),
+                validator: (val) {
+                  setState(() => _valueToValidate = val);
+                  return null;
+                },
+                onSaved: (val) => setState(() => _valueSaved = val),
               ),
               SizedBox(height: 30),
               Text(
-                'IconPicker data value:',
+                'IconPicker data value onChanged:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              SelectableText(_value),
+              SelectableText(_valueChanged ?? ''),
+              SizedBox(height: 30),
+              RaisedButton(
+                onPressed: () {
+                  final loForm = _oFormKey.currentState;
+
+                  if (loForm.validate()) {
+                    loForm.save();
+                  }
+                },
+                child: Text('Submit'),
+              ),
+              SizedBox(height: 30),
+              Text(
+                'IconPicker data value validator:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              SelectableText(_valueToValidate ?? ''),
+              SizedBox(height: 30),
+              Text(
+                'IconPicker data value onSaved:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              SelectableText(_valueSaved ?? ''),
+              SizedBox(height: 30),
+              RaisedButton(
+                onPressed: () {
+                  final loForm = _oFormKey.currentState;
+                  loForm.reset();
+
+                  setState(() {
+                    _valueChanged = '';
+                    _valueToValidate = '';
+                    _valueSaved = '';
+                  });
+                },
+                child: Text('Reset'),
+              ),
             ],
           ),
         ),
