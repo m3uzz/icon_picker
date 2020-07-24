@@ -3,7 +3,7 @@
 [![pub package](https://img.shields.io/pub/v/icon_picker.svg)](https://pub.dartlang.org/packages/icon_picker)
 
 A Flutter widget to show an icon collection to pick.\
-This widget extend TextField and has a similar bihavior as TextFormField
+This widget extend TextField and has a similar behavior as TextFormField
 
 ## Usage
 
@@ -23,7 +23,7 @@ import 'package:icon_picker/icon_picker.dart';
 
 For help getting started with Flutter, view the online [documentation](https://flutter.io/).
 
-### Exemple
+## Example
 
 IconPicker use an internal `MaterialIcon` collection by default, but you can set your own icon collection.\
 You just need to pass in iconCollection param a `Map<String, IconData>`.

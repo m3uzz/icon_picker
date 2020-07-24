@@ -7,10 +7,10 @@ library icon_picker;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// A [SelectFormField] that contains a [TextField].
+/// A [IconPicker] that contains a [TextField].
 ///
 /// This is a convenience widget that wraps a [TextField] widget in a
-/// [SelectFormField].
+/// [IconPicker].
 ///
 /// A [Form] ancestor is not required. The [Form] simply makes it easier to
 /// save, reset, or validate multiple fields at once. To use without a [Form],
@@ -34,14 +34,14 @@ import 'package:flutter/services.dart';
 ///
 /// {@tool snippet}
 ///
-/// Creates a [SelectFormField] with an [InputDecoration] and validator function.
+/// Creates a [IconPicker] with an [InputDecoration] and validator function.
 ///
 /// ![If the user enters valid text, the TextField appears normally without any warnings to the user](https://flutter.github.io/assets-for-api-docs/assets/material/text_form_field.png)
 ///
 /// ![If the user enters invalid text, the error message returned from the validator function is displayed in dark red underneath the input](https://flutter.github.io/assets-for-api-docs/assets/material/text_form_field_error.png)
 ///
 /// ```dart
-/// SelectFormField(
+/// IconPicker(
 ///   decoration: const InputDecoration(
 ///     icon: Icon(Icons.person),
 ///     hintText: 'What do people call you?',
@@ -88,7 +88,7 @@ import 'package:flutter/services.dart';
 ///                   padding: const EdgeInsets.all(8.0),
 ///                   child: ConstrainedBox(
 ///                     constraints: BoxConstraints.tight(Size(200, 50)),
-///                     child: SelectFormField(
+///                     child: IconPicker(
 ///                       onSaved: (String value) {
 ///                         print('Value for field $index saved as "$value"');
 ///                       },
@@ -115,7 +115,7 @@ import 'package:flutter/services.dart';
 ///    surround the actual text editing widget.
 ///  * Learn how to use a [TextEditingController] in one of our [cookbook recipe]s.(https://flutter.dev/docs/cookbook/forms/text-field-changes#2-use-a-texteditingcontroller)
 class IconPicker extends FormField<String> {
-  /// Creates a [SelectFormField] that contains a [TextField].
+  /// Creates a [IconPicker] that contains a [TextField].
   ///
   /// When a [controller] is specified, [initialValue] must be null (the
   /// default). If [controller] is null, then a [TextEditingController]
