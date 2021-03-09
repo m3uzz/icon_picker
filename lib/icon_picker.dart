@@ -126,7 +126,7 @@ class IconPicker extends FormField<String> {
   /// For documentation about the various parameters, see the [TextField] class
   /// and [new TextField], the constructor.
   IconPicker({
-    Key key,
+    Key? key,
     this.controller,
     this.initialValue,
     this.icon,
@@ -136,67 +136,56 @@ class IconPicker extends FormField<String> {
     this.enableSearch = true,
     this.searchHint,
     this.iconCollection = MaterialIcons.mIcons,
-    FocusNode focusNode,
-    InputDecoration decoration,
-    TextInputType keyboardType,
+    FocusNode? focusNode,
+    InputDecoration? decoration,
+    TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
-    TextInputAction textInputAction,
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextDirection textDirection,
+    TextInputAction? textInputAction,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    TextDirection? textDirection,
     TextAlign textAlign = TextAlign.start,
-    TextAlignVertical textAlignVertical,
+    TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions toolbarOptions,
-    bool showCursor,
+    ToolbarOptions? toolbarOptions,
+    bool? showCursor,
     bool obscureText = false,
     bool autocorrect = true,
-    SmartDashesType smartDashesType,
-    SmartQuotesType smartQuotesType,
+    SmartDashesType? smartDashesType,
+    SmartQuotesType? smartQuotesType,
     bool enableSuggestions = true,
     bool autovalidate = false,
     bool maxLengthEnforced = true,
     int maxLines = 1,
-    int minLines,
+    int? minLines,
     bool expands = false,
-    int maxLength,
+    int? maxLength,
     this.onChanged,
     //GestureTapCallback onTap,
-    VoidCallback onEditingComplete,
-    ValueChanged<String> onFieldSubmitted,
-    FormFieldSetter<String> onSaved,
-    FormFieldValidator<String> validator,
-    List<TextInputFormatter> inputFormatters,
+    VoidCallback? onEditingComplete,
+    ValueChanged<String>? onFieldSubmitted,
+    FormFieldSetter<String>? onSaved,
+    FormFieldValidator<String>? validator,
+    List<TextInputFormatter>? inputFormatters,
     bool enabled = true,
     double cursorWidth = 2.0,
-    Radius cursorRadius,
-    Color cursorColor,
-    Brightness keyboardAppearance,
+    Radius? cursorRadius,
+    Color? cursorColor,
+    Brightness? keyboardAppearance,
     EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
     bool enableInteractiveSelection = true,
-    InputCounterWidgetBuilder buildCounter,
-    ScrollPhysics scrollPhysics,
+    InputCounterWidgetBuilder? buildCounter,
+    ScrollPhysics? scrollPhysics,
   })  : assert(initialValue == null || controller == null),
-        assert(iconCollection != null),
-        assert(textAlign != null),
-        assert(autofocus != null),
-        assert(readOnly != null),
-        assert(obscureText != null),
-        assert(autocorrect != null),
-        assert(enableSuggestions != null),
-        assert(autovalidate != null),
-        assert(maxLengthEnforced != null),
-        assert(scrollPadding != null),
-        assert(maxLines == null || maxLines > 0),
+        assert(maxLines > 0),
         assert(minLines == null || minLines > 0),
         assert(
-          (maxLines == null) || (minLines == null) || (maxLines >= minLines),
+          (minLines == null) || (maxLines >= minLines),
           "minLines can't be greater than maxLines",
         ),
-        assert(expands != null),
         assert(
-          !expands || (maxLines == null && minLines == null),
+          !expands || minLines == null,
           'minLines and maxLines must be null when expands is true.',
         ),
         assert(
@@ -204,7 +193,6 @@ class IconPicker extends FormField<String> {
           'Obscured fields cannot be multiline.',
         ),
         assert(maxLength == null || maxLength > 0),
-        assert(enableInteractiveSelection != null),
         super(
           key: key,
           initialValue:
@@ -223,8 +211,7 @@ class IconPicker extends FormField<String> {
                   suffixIcon: Container(
                     width: 10,
                     margin: EdgeInsets.all(0),
-                    child: FlatButton(
-                      padding: EdgeInsets.only(top: 15),
+                    child: TextButton(
                       onPressed: () {},
                       child: Icon(Icons.arrow_drop_down),
                     ),
@@ -270,7 +257,7 @@ class IconPicker extends FormField<String> {
                       ? SmartQuotesType.disabled
                       : SmartQuotesType.enabled),
               enableSuggestions: enableSuggestions,
-              maxLengthEnforced: maxLengthEnforced,
+              //maxLengthEnforced: maxLengthEnforced,
               maxLines: maxLines,
               minLines: minLines,
               expands: expands,
@@ -297,11 +284,11 @@ class IconPicker extends FormField<String> {
   ///
   /// If null, this widget will create its own [TextEditingController] and
   /// initialize its [TextEditingController.text] with [initialValue].
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   /// A initial icon name to display as placeholder.
   /// If the icon name exist in collection, it will set the decoration icon
-  final String initialValue;
+  final String? initialValue;
 
   /// An icon to display as decoration icon in input field.
   ///
@@ -319,7 +306,7 @@ class IconPicker extends FormField<String> {
   /// [errorText], and [counterText].
   ///
   /// See [Icon], [ImageIcon].
-  final Widget icon;
+  final Widget? icon;
 
   /// Text that describes the input field.
   ///
@@ -328,7 +315,7 @@ class IconPicker extends FormField<String> {
   /// text may be entered in the input field). When the input field receives
   /// focus (or if the field is non-empty), the label moves above (i.e.,
   /// vertically adjacent to) the input field.
-  final String labelText;
+  final String? labelText;
 
   /// Param to set search feature. The default value is true.
   ///
@@ -338,13 +325,13 @@ class IconPicker extends FormField<String> {
 
   /// If search is enable on dialog window, searchHint will be displayed
   /// as placeholder in search field.
-  final String searchHint;
+  final String? searchHint;
 
   /// The title of the dialog window.
-  final String title;
+  final String? title;
 
   /// The label of the cancel button on dialog window.
-  final String cancelBtn;
+  final String? cancelBtn;
 
   /// A map of an icon collection.
   ///
@@ -362,20 +349,20 @@ class IconPicker extends FormField<String> {
   /// ```
   final Map<String, IconData> iconCollection;
 
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   @override
   _IconPickerState createState() => _IconPickerState();
 }
 
 class _IconPickerState extends FormFieldState<String> {
-  TextEditingController _stateController;
-  Widget _icon;
+  TextEditingController? _stateController;
+  Widget? _icon;
 
   @override
   IconPicker get widget => super.widget as IconPicker;
 
-  TextEditingController get _effectiveController =>
+  TextEditingController? get _effectiveController =>
       widget.controller ?? _stateController;
 
   @override
@@ -386,13 +373,14 @@ class _IconPickerState extends FormFieldState<String> {
       _stateController = TextEditingController(text: widget.initialValue);
     }
 
-    if (_effectiveController.text != null && _effectiveController.text != '') {
+    if (_effectiveController?.text != null &&
+        _effectiveController?.text != '') {
       widget.iconCollection.forEach((lsName, loIcon) {
-        if (lsName == _effectiveController.text) {
+        if (lsName == _effectiveController?.text) {
           setValue(
               '{"iconName": "$lsName", "codePoint": ${loIcon.codePoint}, "fontFamily": "${loIcon.fontFamily}"}');
 
-          if (widget.icon != null && loIcon != null) {
+          if (widget.icon != null) {
             _icon = Icon(loIcon);
           }
 
@@ -409,7 +397,7 @@ class _IconPickerState extends FormFieldState<String> {
     if (widget.controller != oldWidget.controller) {
       if (oldWidget.controller != null && widget.controller == null) {
         _stateController = TextEditingController.fromValue(
-          oldWidget.controller.value,
+          oldWidget.controller?.value,
         );
       }
 
@@ -420,9 +408,10 @@ class _IconPickerState extends FormFieldState<String> {
       }
     }
 
-    if (_effectiveController.text != null && _effectiveController.text != '') {
+    if (_effectiveController?.text != null &&
+        _effectiveController?.text != '') {
       widget.iconCollection.forEach((lsName, loIcon) {
-        if (lsName == _effectiveController.text) {
+        if (lsName == _effectiveController?.text) {
           setValue(
             '{"iconName": "$lsName", "codePoint": ${loIcon.codePoint}, "fontFamily": "${loIcon.fontFamily}"}',
           );
@@ -442,14 +431,12 @@ class _IconPickerState extends FormFieldState<String> {
     super.reset();
 
     setState(() {
-      _effectiveController.text = widget.initialValue;
+      _effectiveController?.text = widget.initialValue ?? '';
     });
   }
 
   void onChangedHandler(String value) {
-    if (widget.onChanged != null) {
-      widget.onChanged(value);
-    }
+    widget.onChanged?.call(value);
 
     didChange(value);
   }
@@ -468,13 +455,13 @@ class _IconPickerState extends FormFieldState<String> {
       },
     );
 
-    if (lmIconPicked != null) {
+    if (lmIconPicked is Map) {
       if (!mounted) return;
 
       int liCodePoint = lmIconPicked['icon'].codePoint;
       String lsFontFamily = lmIconPicked['icon'].fontFamily;
       String lsIconName = lmIconPicked['name'];
-      _effectiveController.text = lsIconName;
+      _effectiveController?.text = lsIconName;
 
       String lsValue =
           '{"iconName": "$lsIconName", "codePoint": $liCodePoint, "fontFamily": "$lsFontFamily"}';
@@ -490,14 +477,14 @@ class _IconPickerState extends FormFieldState<String> {
 }
 
 class IconPickerDialog extends StatefulWidget {
-  final String title;
-  final String cancelBtn;
+  final String? title;
+  final String? cancelBtn;
   final bool enableSearch;
-  final String searchHint;
-  final Map<String, IconData> iconCollection;
+  final String? searchHint;
+  final Map<String, IconData>? iconCollection;
 
   IconPickerDialog(
-      {Key key,
+      {Key? key,
       this.title,
       this.cancelBtn,
       this.iconCollection,
@@ -535,8 +522,7 @@ class _IconPickerDialogState extends State<IconPickerDialog> {
       title: _titleDialog(),
       content: _content(),
       actions: <Widget>[
-        FlatButton(
-          padding: EdgeInsets.only(right: 20),
+        TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: Text(widget.cancelBtn ?? 'CANCEL'),
         ),
@@ -546,7 +532,7 @@ class _IconPickerDialogState extends State<IconPickerDialog> {
 
   Widget _titleDialog() {
     if (!widget.enableSearch || _iQtIcons == 0) {
-      return Text(widget.title);
+      return Text(widget.title ?? '');
     }
 
     return Column(
@@ -566,7 +552,7 @@ class _IconPickerDialogState extends State<IconPickerDialog> {
   void _loadIcons() {
     setState(() {
       _mIconsShow.clear();
-      _mIconsShow.addAll(widget.iconCollection);
+      _mIconsShow.addAll(widget.iconCollection ?? <String, IconData>{});
       _iQtIcons = _mIconsShow.length;
     });
   }
@@ -632,7 +618,7 @@ class _IconPickerDialogState extends State<IconPickerDialog> {
       setState(() {
         _mIconsShow.clear();
 
-        widget.iconCollection.forEach((lsName, loIcon) {
+        widget.iconCollection?.forEach((lsName, loIcon) {
           if (lsName.contains(lsQuery)) {
             _mIconsShow[lsName] = loIcon;
           }
@@ -643,7 +629,7 @@ class _IconPickerDialogState extends State<IconPickerDialog> {
     } else {
       setState(() {
         _mIconsShow.clear();
-        _mIconsShow.addAll(widget.iconCollection);
+        _mIconsShow.addAll(widget.iconCollection ?? <String, IconData>{});
 
         _iQtIcons = _mIconsShow.length;
       });

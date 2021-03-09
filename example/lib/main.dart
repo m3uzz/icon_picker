@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -22,7 +22,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
-  TextEditingController _controller;
+  TextEditingController? _controller;
   //String _initialValue;
   String _valueChanged = '';
   String _valueToValidate = '';
@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await Future.delayed(const Duration(seconds: 3), () {
       setState(() {
         //_initialValue = 'favorite';
-        _controller.text = 'favorite';
+        _controller?.text = 'favorite';
       });
     });
   }
@@ -69,10 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 enableSearch: true,
                 onChanged: (val) => setState(() => _valueChanged = val),
                 validator: (val) {
-                  setState(() => _valueToValidate = val);
+                  setState(() => _valueToValidate = val ?? '');
                   return null;
                 },
-                onSaved: (val) => setState(() => _valueSaved = val),
+                onSaved: (val) => setState(() => _valueSaved = val ?? ''),
               ),
               SizedBox(height: 30),
               Text(
@@ -80,14 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              SelectableText(_valueChanged ?? ''),
+              SelectableText(_valueChanged),
               SizedBox(height: 30),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   final loForm = _oFormKey.currentState;
 
-                  if (loForm.validate()) {
-                    loForm.save();
+                  if (loForm?.validate() == true) {
+                    loForm?.save();
                   }
                 },
                 child: Text('Submit'),
@@ -98,19 +98,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              SelectableText(_valueToValidate ?? ''),
+              SelectableText(_valueToValidate),
               SizedBox(height: 30),
               Text(
                 'IconPicker data value onSaved:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              SelectableText(_valueSaved ?? ''),
+              SelectableText(_valueSaved),
               SizedBox(height: 30),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   final loForm = _oFormKey.currentState;
-                  loForm.reset();
+                  loForm?.reset();
 
                   setState(() {
                     _valueChanged = '';

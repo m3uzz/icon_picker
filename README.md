@@ -12,7 +12,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  icon_picker: "^1.1.1"
+  icon_picker: "^2.0.0"
 ```
 
 In your library add the following import:

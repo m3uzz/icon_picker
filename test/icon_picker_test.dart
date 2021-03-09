@@ -52,7 +52,7 @@ void main() {
 }
 
 class MyWidget extends StatefulWidget {
-  MyWidget({Key key}) : super(key: key);
+  MyWidget({Key? key}) : super(key: key);
 
   @override
   _MyWidgetState createState() => _MyWidgetState();
