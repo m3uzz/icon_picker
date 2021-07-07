@@ -23,7 +23,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   TextEditingController? _controller;
-  //String _initialValue;
+  //String _initialValue = '';
   String _valueChanged = '';
   String _valueToValidate = '';
   String _valueSaved = '';

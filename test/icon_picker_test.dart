@@ -44,7 +44,7 @@ void main() {
     await tester.pumpWidget(myWidget);
     expect(
       find.text(
-          '{"iconName": "ac_unit", "codePoint": 58712, "fontFamily": "MaterialIcons"}'),
+          '{"iconName": "ac_unit", "codePoint": 57399, "fontFamily": "MaterialIcons"}'),
       findsOneWidget,
       reason: 'IconPicker value result not changed!',
     );

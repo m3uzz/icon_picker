@@ -1,3 +1,7 @@
+## 2.0.1 - 2021-07-07
+
+* Improved validation on load the list of icons.
+
 ## 2.0.0 - 2021-03-09
 
 * Migrate to null safety.

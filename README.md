@@ -2,6 +2,8 @@
 
 [![pub package](https://img.shields.io/pub/v/icon_picker.svg)](https://pub.dartlang.org/packages/icon_picker)
 
+<a href="https://www.buymeacoffee.com/hslbetto" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Beer" style="width: 150px !important;"></a>
+
 A Flutter widget to show an icon collection to pick.\
 This widget extend TextField and has a similar behavior as TextFormField
 
@@ -12,7 +14,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  icon_picker: "^2.0.0"
+  icon_picker: "^2.0.1"
 ```
 
 In your library add the following import:

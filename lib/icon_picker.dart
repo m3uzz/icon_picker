@@ -442,7 +442,7 @@ class _IconPickerState extends FormFieldState<String> {
   }
 
   Future<void> _showIconPickerDialog() async {
-    Map<String, dynamic> lmIconPicked = await showDialog(
+    Map<String, dynamic>? lmIconPicked = await showDialog(
       context: context,
       builder: (BuildContext context) {
         return IconPickerDialog(
@@ -458,7 +458,7 @@ class _IconPickerState extends FormFieldState<String> {
     if (lmIconPicked is Map) {
       if (!mounted) return;
 
-      int liCodePoint = lmIconPicked['icon'].codePoint;
+      int liCodePoint = lmIconPicked!['icon'].codePoint;
       String lsFontFamily = lmIconPicked['icon'].fontFamily;
       String lsIconName = lmIconPicked['name'];
       _effectiveController?.text = lsIconName;
