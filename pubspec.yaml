@@ -1,10 +1,10 @@
 name: icon_picker
 description: A Flutter widget to display a dialog containing an icon collection to pick one returning a jason iconData.
-version: 2.0.1
+version: 2.1.0
 homepage: https://github.com/m3uzz/icon_picker
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.1 <3.0.0"
 
 dependencies:
   flutter:
@@ -13,6 +13,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
