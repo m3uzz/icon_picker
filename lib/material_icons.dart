@@ -43,7 +43,7 @@ class MaterialIcons {
     'five_k': Icons.five_k,
     'five_k_plus': Icons.five_k_plus,
     'five_mp': Icons.five_mp,
-    'six_ft_apart': Icons.six__ft_apart,
+    'six_ft_apart': Icons.six_ft_apart,
     'six_k': Icons.six_k,
     'six_k_plus': Icons.six_k_plus,
     'six_mp': Icons.six_mp,
